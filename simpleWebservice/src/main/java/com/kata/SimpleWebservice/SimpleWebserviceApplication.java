@@ -26,7 +26,7 @@ public class SimpleWebserviceApplication {
 				String corsUrl = env.getProperty("cors.url");
 				registry.addMapping("/getUsers").allowedOrigins(corsUrl);
 				registry.addMapping("/createCategory").allowedOrigins(corsUrl);
-
+				registry.addMapping("/allCategories").allowedOrigins(corsUrl);
 			}
 		};
 	}
