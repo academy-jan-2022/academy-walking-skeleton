@@ -11,9 +11,14 @@ import static org.mockito.Mockito.verify;
 class CategoryServiceTest {
     @Test void
     create_a_new_category_in_the_database() {
-
+        // Given
         CategoryRepository categoryRepository = mock(CategoryRepository.class);
+        CategoryService categoryService = new CategoryService(categoryRepository);
         Category category = new Category("aName", "aDescription", "aPicture");
-        verify(categoryRepository).createCategory(category);
+        // When
+        categoryService.create(category);
+
+        // Then
+        verify(categoryRepository).save(category);
     }
 }
