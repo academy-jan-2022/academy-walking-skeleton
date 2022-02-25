@@ -36,7 +36,7 @@ public class CategoryAcceptanceTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
 
-        this.mockMvc.perform(get("/categories"))
+        this.mockMvc.perform(get("/allCategories"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
     }
