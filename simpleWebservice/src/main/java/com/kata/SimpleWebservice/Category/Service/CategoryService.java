@@ -21,6 +21,6 @@ public class CategoryService {
     }
 
     public List<Category> getAllCategories() {
-        throw new UnsupportedOperationException();
+        return categoryRepository.findAll();
     }
 }
