@@ -1,16 +1,23 @@
 package com.kata.SimpleWebservice.Category.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @EqualsAndHashCode
 @Setter
 @Getter
 @NoArgsConstructor
+@Entity
 public class Category {
 
+    @JsonIgnore
+    private @Id long id;
     private String name;
     private String description;
     private String picture;
