@@ -21,4 +21,5 @@ class CategoryServiceTest {
         // Then
         verify(categoryRepository).save(category);
     }
+
 }
