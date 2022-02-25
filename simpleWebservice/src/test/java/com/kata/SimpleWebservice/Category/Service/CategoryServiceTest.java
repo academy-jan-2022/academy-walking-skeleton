@@ -22,4 +22,14 @@ class CategoryServiceTest {
         verify(categoryRepository).save(category);
     }
 
+    @Test void
+    get_all_the_categories_from_the_database() {
+
+        CategoryRepository categoryRepository = mock(CategoryRepository.class);
+        CategoryService categoryService = new CategoryService(categoryRepository);
+
+        categoryService.getAllCategories();
+
+        verify(categoryRepository).findAll();
+    }
 }
