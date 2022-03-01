@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Category {
 
     @JsonIgnore
-    private @Id @GeneratedValue
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String name;
     private String description;

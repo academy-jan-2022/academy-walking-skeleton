@@ -17,10 +17,13 @@ import java.util.List;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-class CategoryRepositoryShould {
+class ProductRepositoryTest {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     void increment_id() {
         Category entity1 = new Category("new name", "new description", "new picture");
