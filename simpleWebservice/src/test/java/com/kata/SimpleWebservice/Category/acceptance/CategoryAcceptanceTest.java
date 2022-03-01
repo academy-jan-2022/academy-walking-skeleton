@@ -23,7 +23,7 @@ public class CategoryAcceptanceTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test void
+     void
     should_create_and_retrieve_all_the_categories_with_ok_status() throws Exception {
 
         //Given
