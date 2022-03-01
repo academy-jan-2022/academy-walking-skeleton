@@ -15,7 +15,7 @@ import java.util.List;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class ProductRepositoryTest {
+public class CategoryRepositoryShould {
 
     @Autowired
     private CategoryRepository categoryRepository;
