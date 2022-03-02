@@ -23,9 +23,9 @@ BACKEND_IMAGE_COMMIT		:= ${BACKEND_REPOSITORY_NAME}:${COMMIT}
 
 build_jar:
 	@cd simpleWebservice && \
-		./gradlew clean build
+		./gradlew clean build -x test
 
-build_backend_docker: build_jar
+build_backend_docker: test build_jar
 	@cd simpleWebservice && \
 		docker image build -f ${BACKEND_DOCKERFILE} -t ${BACKEND_IMAGE_COMMIT} .
 	@docker tag ${BACKEND_IMAGE_COMMIT} ${BACKEND_REPOSITORY_NAME}:${LATEST}
@@ -67,3 +67,12 @@ ps:
 .PHONY: db
 db:
 	@docker-compose up -d db
+
+.PHONY: test
+test: db run-test down
+
+.PHONY: run-test
+run-test:
+	@cd simpleWebservice && \
+    		./gradlew clean test
+
