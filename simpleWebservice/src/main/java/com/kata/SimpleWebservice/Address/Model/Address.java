@@ -7,26 +7,17 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 
 @EqualsAndHashCode
-@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Address {
     @JsonIgnore
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    @Column(nullable = false)
+    private long id;
     private String lineOne;
-    @Column(nullable = false)
     private String lineTwo;
-    @Column(nullable = false)
     private String city;
-    @Column(nullable = false)
     private String postCode;
-    @Column(nullable = false)
     private String region;
-    @Column(nullable = false)
     private String country;
 
     public Address(String lineOne, String lineTwo, String city, String postCode, String region, String country) {

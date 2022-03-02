@@ -3,6 +3,7 @@ package com.kata.SimpleWebservice.Product;
 import com.kata.SimpleWebservice.Category.Model.Category;
 import com.kata.SimpleWebservice.Category.Model.CategoryRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,12 @@ public class ProductRepositoryShould {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @BeforeEach
+    void setUp() {
+        categoryRepository.clear();
+        productRepository.clear();
+    }
 
     @Test void
     should_create_and_retrieve_all_the_products_with_ok_status() throws Exception {

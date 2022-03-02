@@ -2,6 +2,9 @@ package com.kata.SimpleWebservice.Address;
 
 import com.kata.SimpleWebservice.Address.Model.Address;
 import com.kata.SimpleWebservice.Address.Model.Repository.AddressRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +16,18 @@ import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class AddressRepositoryShould {
+class AddressRepositoryShould {
 
     @Autowired
     private AddressRepository addressRepository;
 
+    @BeforeEach
+    void setUp() {
+        addressRepository.clear();
+    }
+
     @Test
-    void add_an_address(){
+    void add_an_address() {
         var address = new Address(
                 "line one test",
                 "line two test",
@@ -28,10 +36,12 @@ public class AddressRepositoryShould {
                 "Test region",
                 "test   country");
 
-        addressRepository.save(address) ;
+        var id = addressRepository.save(address);
 
-        var result = addressRepository.getById(address.getId());
+        var result = addressRepository.getById(id);
 
-        assertEquals(1, result);
+        Assertions.assertEquals(1, result.getId());
     }
+
+
 }

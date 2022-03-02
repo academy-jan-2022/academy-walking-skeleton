@@ -1,14 +1,17 @@
 package com.kata.SimpleWebservice.Product;
 
 import org.dalesbred.Database;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductRepositoryDalesbread implements ProductRepository{
 
-    @Autowired
-    Database db;
+
+    private final Database db;
+
+    public ProductRepositoryDalesbread(Database db) {
+        this.db = db;
+    }
 
     @Override
     public int save(Product product) {
@@ -21,5 +24,10 @@ public class ProductRepositoryDalesbread implements ProductRepository{
     @Override
     public Product getById(long id) {
         return db.findUnique(Product.class, "select id, name, quantity_per_unit, unit_price, units_in_stock, units_in_order, reorder_level, discontinued, category_id from product where id = ?", id);
+    }
+
+    @Override
+    public void clear() {
+        db.update("truncate product restart identity");
     }
 }
