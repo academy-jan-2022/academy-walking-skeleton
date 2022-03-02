@@ -1,7 +1,9 @@
 package com.kata.SimpleWebservice.Address.Model.Repository;
 
-import com.kata.SimpleWebservice.Address.Model.Address;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AddressRepository extends JpaRepository<Address, Long> {
+import com.kata.SimpleWebservice.Address.Model.Address;
+
+public interface AddressRepository {
+    void save(Address address);
+    int getById(long id);
 }

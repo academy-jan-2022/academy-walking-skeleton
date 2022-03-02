@@ -32,6 +32,6 @@ public class AddressRepositoryShould {
 
         var result = addressRepository.getById(address.getId());
 
-        assertEquals(1, result.getId());
+        assertEquals(1, result);
     }
 }
