@@ -1,5 +1,5 @@
 CREATE TABLE "category"(
-                             "id" INTEGER NOT NULL,
+                             "id" SERIAL,
                              "name" VARCHAR(255) NOT NULL,
                              "description" TEXT NOT NULL,
                              "picture" VARCHAR(255) NOT NULL
