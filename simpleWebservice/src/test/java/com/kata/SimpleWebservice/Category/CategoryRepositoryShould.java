@@ -2,6 +2,7 @@ package com.kata.SimpleWebservice.Category;
 
 import com.kata.SimpleWebservice.Category.Model.Category;
 import com.kata.SimpleWebservice.Category.Model.CategoryRepository;
+import com.kata.SimpleWebservice.Product.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

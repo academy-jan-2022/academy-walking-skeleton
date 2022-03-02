@@ -12,9 +12,9 @@ public class CategoryRepositoryDalesbred implements CategoryRepository {
     Database db;
 
     @Override
-    public void save(Category category) {
-       db.update(
-               String.format("insert into category (name, description, picture) values ('%s', '%s', '%s')",
+    public int save(Category category) {
+       return db.findUniqueInt(
+               String.format("insert into category (name, description, picture) values ('%s', '%s', '%s') returning id",
                        category.getName(), category.getDescription(), category.getPicture())
        );
     }
