@@ -21,11 +21,11 @@ BACKEND_REPOSITORY_URI		:= ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}/${BACKEND_REPOSIT
 BACKEND_DOCKERFILE			:= src/main/docker/Dockerfile
 BACKEND_IMAGE_COMMIT		:= ${BACKEND_REPOSITORY_NAME}:${COMMIT}
 
-build_jar:
+build_jar: test
 	@cd simpleWebservice && \
 		./gradlew clean build -x test
 
-build_backend_docker: test build_jar
+build_backend_docker: build_jar
 	@cd simpleWebservice && \
 		docker image build -f ${BACKEND_DOCKERFILE} -t ${BACKEND_IMAGE_COMMIT} .
 	@docker tag ${BACKEND_IMAGE_COMMIT} ${BACKEND_REPOSITORY_NAME}:${LATEST}
