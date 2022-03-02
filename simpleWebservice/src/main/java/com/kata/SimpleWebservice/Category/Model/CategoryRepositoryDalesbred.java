@@ -1,5 +1,26 @@
 package com.kata.SimpleWebservice.Category.Model;
-//
-//public class CategoryRepositoryDalesbred implements CategoryRepository{
-//
-//}
+
+import org.dalesbred.Database;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public class CategoryRepositoryDalesbred implements CategoryRepository {
+    @Autowired
+    Database db;
+
+    @Override
+    public void save(Category category) {
+       db.update(
+               String.format("insert into category (name, description, picture) values ('%s', '%s', '%s')",
+                       category.getName(), category.getDescription(), category.getPicture())
+       );
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return db.findAll(Category.class, "select * from category");
+    }
+}
