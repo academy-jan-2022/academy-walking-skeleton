@@ -1,0 +1,1 @@
+alter table product alter id add generated always as identity;

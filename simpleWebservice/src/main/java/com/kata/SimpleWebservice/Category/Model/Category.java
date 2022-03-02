@@ -15,7 +15,6 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @NoArgsConstructor
-@Entity
 public class Category {
 
     @JsonIgnore

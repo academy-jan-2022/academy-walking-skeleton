@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.Category;
+package com.kata.SimpleWebservice.Product;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,11 +12,10 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Product {
     @JsonIgnore
     private @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String name;
     private int quantityPerUnit;
@@ -25,11 +24,12 @@ public class Product {
     private int unitsInOrder;
     private int reorderLevel;
     private boolean discontinued;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
+    private int categoryId;
 
-    public Product(String name, int quantityPerUnit, int unitPrice, int unitsInStock, int unitsInOrder, int reorderLevel, boolean discontinued, Category category) {
+    public Product(String name, int quantityPerUnit, int unitPrice, int unitsInStock, int unitsInOrder, int reorderLevel, boolean discontinued, int categoryId) {
         this.name = name;
         this.quantityPerUnit = quantityPerUnit;
         this.unitPrice = unitPrice;
@@ -37,6 +37,6 @@ public class Product {
         this.unitsInOrder = unitsInOrder;
         this.reorderLevel = reorderLevel;
         this.discontinued = discontinued;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 }
