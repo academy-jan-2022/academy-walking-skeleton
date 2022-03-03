@@ -2,21 +2,13 @@ package com.kata.SimpleWebservice.Product;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kata.SimpleWebservice.Category.Model.Category;
 import lombok.*;
 
-import javax.persistence.*;
-
-@EqualsAndHashCode
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Product {
     @JsonIgnore
-    private @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
     private String name;
     private int quantityPerUnit;
     private int unitPrice;
@@ -24,9 +16,6 @@ public class Product {
     private int unitsInOrder;
     private int reorderLevel;
     private boolean discontinued;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
     private int categoryId;
 
     public Product(String name, int quantityPerUnit, int unitPrice, int unitsInStock, int unitsInOrder, int reorderLevel, boolean discontinued, int categoryId) {

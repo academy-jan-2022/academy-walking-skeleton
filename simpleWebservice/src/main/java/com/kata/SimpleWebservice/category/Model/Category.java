@@ -1,19 +1,13 @@
-package com.kata.SimpleWebservice.Category.Model;
+package com.kata.SimpleWebservice.category.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@EqualsAndHashCode
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 public class Category {
 

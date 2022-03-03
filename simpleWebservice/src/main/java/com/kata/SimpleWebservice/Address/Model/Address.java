@@ -6,10 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
-@EqualsAndHashCode
-@Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Address {
     @JsonIgnore
     private long id;

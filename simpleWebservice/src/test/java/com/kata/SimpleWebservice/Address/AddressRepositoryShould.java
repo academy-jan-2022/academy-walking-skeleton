@@ -1,8 +1,7 @@
 package com.kata.SimpleWebservice.Address;
 
 import com.kata.SimpleWebservice.Address.Model.Address;
-import com.kata.SimpleWebservice.Address.Model.Repository.AddressRepository;
-import org.junit.jupiter.api.AfterEach;
+import com.kata.SimpleWebservice.Address.Repository.AddressRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

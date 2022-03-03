@@ -1,9 +1,8 @@
-package com.kata.SimpleWebservice.Category.Controller;
+package com.kata.SimpleWebservice.category.Controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kata.SimpleWebservice.Category.Model.Category;
-import com.kata.SimpleWebservice.Category.Service.CategoryService;
+import com.kata.SimpleWebservice.category.Model.Category;
+import com.kata.SimpleWebservice.category.Service.CategoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

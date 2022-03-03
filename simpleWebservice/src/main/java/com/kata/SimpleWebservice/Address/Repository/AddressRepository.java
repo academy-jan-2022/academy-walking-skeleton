@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.Address.Model.Repository;
+package com.kata.SimpleWebservice.Address.Repository;
 
 
 import com.kata.SimpleWebservice.Address.Model.Address;

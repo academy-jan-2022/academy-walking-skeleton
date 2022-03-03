@@ -1,10 +1,9 @@
-package com.kata.SimpleWebservice.Category.Service;
+package com.kata.SimpleWebservice.category.Service;
 
-import com.kata.SimpleWebservice.Category.Model.Category;
-import com.kata.SimpleWebservice.Category.Model.CategoryRepository;
+import com.kata.SimpleWebservice.category.Model.Category;
+import com.kata.SimpleWebservice.category.Model.CategoryRepository;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
