@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.category;
+package com.kata.SimpleWebservice.Category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

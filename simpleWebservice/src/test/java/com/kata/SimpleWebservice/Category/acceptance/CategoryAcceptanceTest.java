@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.category.acceptance;
+package com.kata.SimpleWebservice.Category.acceptance;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

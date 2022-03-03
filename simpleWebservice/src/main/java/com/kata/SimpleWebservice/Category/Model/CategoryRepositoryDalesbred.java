@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.category.Model;
+package com.kata.SimpleWebservice.Category.Model;
 
 import org.dalesbred.Database;
 import org.springframework.stereotype.Repository;

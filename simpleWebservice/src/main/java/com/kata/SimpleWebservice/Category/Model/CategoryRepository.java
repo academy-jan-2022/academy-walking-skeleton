@@ -1,4 +1,4 @@
-package com.kata.SimpleWebservice.category.Model;
+package com.kata.SimpleWebservice.Category.Model;
 
 import java.util.List;
 
