@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -39,7 +40,7 @@ public class CategoryCacheShould {
     CategoryService categoryService;
 
     @Autowired
-    RedisCacheManager redisCacheManager;
+    CacheManager redisCacheManager;
 
     @BeforeEach
     void wipe_redis() {

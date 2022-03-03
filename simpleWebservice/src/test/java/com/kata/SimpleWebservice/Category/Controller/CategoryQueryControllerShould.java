@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,7 +37,7 @@ public class CategoryQueryControllerShould {
     ObjectMapper objectMapper;
 
     @Autowired
-    RedisCacheManager redisCacheManager;
+    CacheManager redisCacheManager;
 
     @BeforeEach
     void wipe_redis() {

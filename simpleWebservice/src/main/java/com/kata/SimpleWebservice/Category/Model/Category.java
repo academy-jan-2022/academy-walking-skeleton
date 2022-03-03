@@ -6,10 +6,11 @@ import lombok.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class Category {
+public class Category implements Serializable {
 
     @JsonIgnore
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,4 @@ public class Category {
         this.description = description;
         this.picture = picture;
     }
-
-
 }
