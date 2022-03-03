@@ -55,7 +55,8 @@ up:
 
 .PHONY: down
 down:
-	@docker-compose down
+	@DBPORTHOST="" REDISPORTHOST="" ENV="" \
+	docker-compose down
 
 .PHONY: logs
 logs:
@@ -66,12 +67,12 @@ ps:
 
 .PHONY: db
 db:
-	@DBPORTHOST="5432" DBPORTCONTAINER="5432" REDISPORTHOST="6379" REDISPORTCONTAINER="6379" ENV="DEV" \
+	@DBPORTHOST="5432" REDISPORTHOST="6379" ENV="DEV" \
 	docker-compose up -d db cache
 
 .PHONY: dbtest
 dbtest:
-	@DBPORTHOST="5430" DBPORTCONTAINER="5430" REDISPORTHOST="6380" REDISPORTCONTAINER="6380" ENV="TEST" \
+	@DBPORTHOST="5430" REDISPORTHOST="6380" ENV="TEST" \
 	docker-compose up -d db cache
 
 .PHONY: run-migration
