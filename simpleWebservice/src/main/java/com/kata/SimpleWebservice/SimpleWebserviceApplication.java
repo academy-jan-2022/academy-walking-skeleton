@@ -43,7 +43,7 @@ public class SimpleWebserviceApplication {
 		};
 	}
 
-	@Bean
+/*	@Bean
 	public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory){
 		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().disableKeyPrefix()
 				.entryTtl(Duration.ofMinutes(1)).disableCachingNullValues()
@@ -57,6 +57,6 @@ public class SimpleWebserviceApplication {
 	@Bean
 	public RedisConnectionFactory connectionFactory(){
 		return new JedisConnectionFactory();
-	}
+	}*/
 
 }
