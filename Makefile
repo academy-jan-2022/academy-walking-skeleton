@@ -66,7 +66,7 @@ ps:
 
 .PHONY: db
 db:
-	@docker-compose up -d db
+	@docker-compose up -d db cache
 
 .PHONY: run-migration
 run-migration:
