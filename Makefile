@@ -21,7 +21,7 @@ BACKEND_REPOSITORY_URI		:= ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}/${BACKEND_REPOSIT
 BACKEND_DOCKERFILE			:= src/main/docker/Dockerfile
 BACKEND_IMAGE_COMMIT		:= ${BACKEND_REPOSITORY_NAME}:${COMMIT}
 
-build_jar: test
+build_jar:
 	@cd simpleWebservice && \
 		./gradlew clean build -x test
 
@@ -51,7 +51,8 @@ build_frontend_docker:
 
 .PHONY: up
 up:
-	@docker-compose up -d
+	@DBPORTHOST="5432" REDISPORTHOST="6379" ENV="DEV" \
+	docker-compose up -d
 
 .PHONY: down
 down:
@@ -82,7 +83,6 @@ run-migration:
     		./gradlew flywayBaseline && \
     		./gradlew flywayMigrate
 run-migration-test:
-#$ gradle -Dflyway.user=myUser -Dflyway.schemas=schema1,schema2 -Dflyway.placeholders.keyABC=valueXYZ
 	@cd simpleWebservice && \
     		./gradlew -Dflyway.configFiles='flyway-test.conf' flywayClean && \
     		./gradlew -Dflyway.configFiles='flyway-test.conf' flywayBaseline && \
@@ -96,3 +96,8 @@ run-test:
 	@cd simpleWebservice && \
     		./gradlew -PspringProfile=test clean test
 
+.PHONY: dev
+dev: all up run-migration
+
+.PHONY: dev-cd
+dev-cd: test dev
