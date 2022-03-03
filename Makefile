@@ -65,8 +65,13 @@ ps:
 	@docker-compose ps
 
 .PHONY: db
-db:
+db: run-migration
 	@docker-compose up -d db
+
+.PHONY: run-migration
+run-migration:
+	@cd simpleWebservice && \
+    		./gradlew flywayClean && ./gradlew flywayBaseline && ./gradlew flywayMigrate
 
 .PHONY: test
 test: db run-test down
