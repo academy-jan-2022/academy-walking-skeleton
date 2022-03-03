@@ -66,18 +66,32 @@ ps:
 
 .PHONY: db
 db:
-	@docker-compose up -d db cache
+	@DBPORTHOST="5432" DBPORTCONTAINER="5432" REDISPORTHOST="6379" REDISPORTCONTAINER="6379" ENV="DEV" \
+	docker-compose up -d db cache
+
+.PHONY: dbtest
+dbtest:
+	@DBPORTHOST="5430" DBPORTCONTAINER="5430" REDISPORTHOST="6380" REDISPORTCONTAINER="6380" ENV="TEST" \
+	docker-compose up -d db cache
 
 .PHONY: run-migration
 run-migration:
 	@cd simpleWebservice && \
-    		./gradlew flywayClean && ./gradlew flywayBaseline && ./gradlew flywayMigrate
+    		./gradlew flywayClean && \
+    		./gradlew flywayBaseline && \
+    		./gradlew flywayMigrate
+run-migration-test:
+#$ gradle -Dflyway.user=myUser -Dflyway.schemas=schema1,schema2 -Dflyway.placeholders.keyABC=valueXYZ
+	@cd simpleWebservice && \
+    		./gradlew -Dflyway.configFiles='flyway-test.conf' flywayClean && \
+    		./gradlew -Dflyway.configFiles='flyway-test.conf' flywayBaseline && \
+    		./gradlew -Dflyway.configFiles='flyway-test.conf' flywayMigrate
 
 .PHONY: test
-test: db run-migration run-test down
+test: dbtest run-migration-test run-test down
 
 .PHONY: run-test
 run-test:
 	@cd simpleWebservice && \
-    		./gradlew clean test
+    		./gradlew bootRun --args='--spring.profiles.active=test' clean test
 

@@ -59,3 +59,14 @@ flyway {
 	password = 'postgres'
 }
 
+task migrateDatabase1(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+	url = "jdbc:postgresql://localhost:5432/postgresdb"
+	user = 'postgres'
+	password = 'postgres'
+}
+
+task migrateDatabase2(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+	url = "jdbc:postgresql://localhost:5430/postgresdb"
+	user = 'postgres'
+	password = 'postgres'
+}
