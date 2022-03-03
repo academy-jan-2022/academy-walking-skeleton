@@ -93,5 +93,5 @@ test: dbtest run-migration-test run-test down
 .PHONY: run-test
 run-test:
 	@cd simpleWebservice && \
-    		./gradlew bootRun --args='--spring.profiles.active=test' clean test
+    		./gradlew clean test
 
