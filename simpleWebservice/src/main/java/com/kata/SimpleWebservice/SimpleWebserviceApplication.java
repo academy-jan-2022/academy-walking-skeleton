@@ -1,6 +1,6 @@
 package com.kata.SimpleWebservice;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -8,10 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -43,7 +42,7 @@ public class SimpleWebserviceApplication {
 		};
 	}
 
-/*	@Bean
+	@Bean
 	public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory){
 		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().disableKeyPrefix()
 				.entryTtl(Duration.ofMinutes(1)).disableCachingNullValues()
@@ -55,8 +54,8 @@ public class SimpleWebserviceApplication {
 	}
 
 	@Bean
-	public RedisConnectionFactory connectionFactory(){
-		return new JedisConnectionFactory();
-	}*/
-
+	public RedisConnectionFactory connectionFactory(@Value("${spring.redis.port:6379}") int port){
+		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", port);
+		return new JedisConnectionFactory(config);
+	}
 }
