@@ -65,4 +65,19 @@ class HeartbeatControllerShould {
 
         assertThat(response).contains("cache is not available");
     }
+
+    @Test
+    void get_500_if_redis_and_database_is_unavailable() throws Exception {
+        when(redisCacheManager.getCacheNames()).thenThrow(new IllegalStateException("Failed to load ApplicationContext"));
+        when(categoryRepository.findAll()).thenThrow(new IllegalStateException("Failed to load ApplicationContext"));
+
+        String response = mockMvc.perform(get("/heartbeat"))
+                .andExpect(status().is5xxServerError())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertThat(response).contains("database is not available");
+        assertThat(response).contains("cache is not available");
+    }
 }

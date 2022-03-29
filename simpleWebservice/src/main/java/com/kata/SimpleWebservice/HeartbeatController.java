@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 @Controller
 @RestController
@@ -26,16 +29,18 @@ public class HeartbeatController {
     @GetMapping("/heartbeat")
     public ResponseEntity<?> checkHeartbeat() {
         List<String> possibleErrors = new ArrayList<>();
-        try {
-            categoryRepository.findAll();
-        } catch (IllegalStateException e) {
-            possibleErrors.add("database is not available");
-        }
 
-        try {
-            cacheManager.getCacheNames();
-        } catch (IllegalStateException e) {
-            possibleErrors.add("cache is not available");
+        HashMap<String, Runnable> dependencies = new HashMap<>();
+
+        dependencies.put("database is not available", categoryRepository::findAll);
+        dependencies.put("cache is not available", cacheManager::getCacheNames);
+
+        for (Entry<String, Runnable> dependency : dependencies.entrySet()) {
+            try {
+                dependency.getValue().run();
+            } catch (IllegalStateException e) {
+                possibleErrors.add(dependency.getKey());
+            }
         }
 
         if(!possibleErrors.isEmpty()){
@@ -43,8 +48,6 @@ public class HeartbeatController {
         }
 
         return ResponseEntity.ok().build();
-
-
     }
 
 
